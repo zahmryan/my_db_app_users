@@ -21,13 +21,16 @@
         <td><%= moviestore.release_date %></td>
         <td><%= moviestore.currently_rented_out %></td>
         <td><%= link_to 'Show', moviestore %></td>
-        <td><%= link_to 'Edit', edit_moviestore_path(moviestore) %></td>
-        <td><%= link_to 'Destroy', moviestore, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Edit', edit_moviestore_path(moviestore) %></td>
+          <td><%= link_to 'Destroy', moviestore, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Moviestore', new_moviestore_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Moviestore', new_moviestore_path %>
+<% end %>
